@@ -1,0 +1,772 @@
+// # SHORT HOWTO
+// ## Sprites
+//     .whatever
+//          +sized-sprite($icons, coderiver) //or
+// 			+s(codedby) //gets default value for spritemap as $icons
+// ### animation example
+//     +include keyframes(rotate)
+//        from
+//           +rotate(0)
+//        to
+//           +rotate(360)
+// ## animation usage
+//     body:hover
+// 	    +animation(rotate 200s linear infinite)
+// ## animations easing, see easings.net for full list and examples, tnx @ai
+//     transition: all 1.2s ceaser($ease-in)
+// ## gradient example
+//     +background-image(linear-gradient(#232323, #5c5c5c));
+//     +g(#232323, #5c5c5c);
+//	   horizontal
+//     +gh(#232323, #5c5c5c);
+// ## making bw-images
+//     img
+//			@extend %gray
+// ## predefined media-queries: https://github.com/paranoida/sass-mediaqueries
+//     +min-screen(320)
+//			display: none
+// +max-screen(1000), +iphone5, +iphone4, +ipad-retina, +ipad, +hdpi - also available
+//
+// ## use cycles
+//     @for $i from 1 through 3
+//       .item-#{$i}
+//			width: 2em * $i;
+//     @each $s in a,b,c
+// 	    	#{$s}
+//				display: none
+// ## fonts 
+// Save fonts to /css/fonts, after that write (eot, woff, ttf):
+// +font(book, cytiapro-black-webfont)  
+// =book
+// 	font-family: "book", Arial, sans-serif 
+// insert pics into css
+// div
+// 	+pic("blabla.png")
+// span
+// 	+png(blabla)
+// p
+// 	+jpg(bla)
+
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,600&subset=latin,cyrillic-ext")
+@import url("http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic-ext")
+=ft
+	font-family: 'PT Sans', sans-serif
+	font-weight: normal
+
+body
+	font-family: 'Open Sans', sans-serif
+	font-size: 14px 
+	font-weight: 400
+	line-height: 1.4
+	a
+		text-decoration: none
+		&:hover
+			text-decoration: underline
+
+// common blocks  
+//out
+.out
+	+r(570)
+		position: relative
+
+
+//wrapper   
+.wrapper
+	margin: 0 auto
+	padding: 0 10px
+	max-width: 1000px
+	+box
+	+clr
+
+//ico
+.ico
+	display: inline-block
+	+transition(all 0.1s linear)
+	&.ico_f-top
+		+s(f-top)
+	&.ico_tw-top
+		+s(tw-top)
+	&.ico_f
+		+s(f)
+	&.ico_tw
+		+s(tw)
+	&.ico_vk
+		+s(vk)
+	&.ico_g
+		+s(g)
+	&:hover
+		+opacity(0.8)
+	&.ico_open-nav
+		+svg(menu, 34, 34)
+		+r(340)
+			+svg(menu, 20, 20)
+
+//btn
+.btn
+	position: relative
+	padding: 0 22px
+	height: 51px
+	font-size: 18px
+	color: #fff
+	font-weight: 600
+	line-height: 51px
+	+box-shadow(0 2px 5px rgba(0,0,0,.1), inset 0 1px 0 #fff800)
+	border: 1px solid #ffc42a
+	background: #ffba00
+	+transition(all 0.2s linear)
+	+border-radius(3px)
+	display: inline-block
+	&:hover
+		text-decoration: none
+		+opacity(0.8)
+	&:active
+		top: -1px
+	&:before
+		position: absolute
+		content: ''
+		left: 0
+		top: 0
+		+s(btn-arr-left)
+	&:after
+		position: absolute
+		content: ''
+		right: 0
+		top: 0
+		+s(btn-arr-right)
+	+r(570)
+		height: 38px
+		font-size: 14px
+		line-height: 38px
+
+//header
+.header
+	padding: 16px 0
+	color: #737373
+	+box
+	.header__left
+		float: left
+	.header__right
+		float: right
+	.header__text
+		margin-left: 20px
+		padding-left: 30px
+		height: 31px
+		line-height: 30px
+		font-size: 20px
+		text-transform: uppercase
+		border-left: 1px solid #c4c4c4
+	.logo,
+	.header__text,
+	.soc,
+	.entry
+		vertical-align: middle
+		display: inline-block
+	.header__btn
+		position: absolute
+		top: 15px
+		right: 10px
+		height: 60px
+		width: 60px
+		line-height: 60px
+		text-align: center
+		z-index: 30
+		+border-radius(3px)
+		background: #ffba00
+		background: rgba(#ffba00, 0.6)
+		display: none
+		.ico
+			vertical-align: middle
+		&.is-active
+			background: rgba(#ffba00, 1)
+		+r(340)
+			height: 45px
+			width: 45px
+			line-height: 45px
+	+r(836)
+		.header__text
+			font-size: 16px
+	+r(768)
+		.header__text
+			font-size: 14px
+	+r(735)
+		.header__text
+			display: none
+	+r(570)
+		.header__right
+			margin-top: 10px
+			width: 100%
+		.header__btn
+			display: block
+
+//entry
+.entry
+	margin-left: 12px
+	a
+		color: #737373
+
+//logo
+.logo
+	+s(logo)
+
+//soc
+.soc
+	font-size: 0
+	li
+		margin-left: 6px
+		display: inline-block
+		&:first-child
+			margin-left: 0
+
+//nav
+.nav
+	font-size: 0
+	background: url(../img/nav-bg.png) repeat-x 0 0
+	.nav__item
+		position: relative
+		display: inline-block
+		&:before
+			position: absolute
+			content: ''
+			left: 0
+			top: 1px
+			z-index: 1
+			visibility: hidden
+			+opacity(0)
+			+s(nav-item-arr-left)
+			+transition(all 0.2s linear)
+		&:after
+			position: absolute
+			content: ''
+			right: 0
+			top: 1px
+			z-index: 1
+			visibility: hidden
+			+opacity(0)
+			+s(nav-item-arr-right)
+			+transition(all 0.2s linear)
+		&:hover,
+		&.is-active
+			&:after,
+			&:before
+				visibility: visible
+				+opacity(1)
+			a
+				text-decoration: none
+				background: #fccd4e
+				border: 1px solid #ffc42a
+				+box-shadow(0 2px 5px rgba(0,0,0,.1), inset 0 0 7px rgba(255,242,198,.4), inset 0 1px 0 #fff800)
+				+background-image(linear-gradient(bottom, #ffc016 0%, #f7b500 30.15%, #fbcc4d 69.85%, #ffd35e 100%))
+		&:hover
+			&:after,
+			&:before
+				visibility: visible
+				+opacity(1)
+			a
+				&:after
+					visibility: visible
+					+opacity(1)
+		&.is-active
+			a
+				&:before
+					display: block
+	a
+		position: relative
+		padding: 0 51px
+		height: 68px
+		line-height: 68px
+		color: #fff
+		font-size: 18px
+		text-transform: uppercase
+		border: 1px solid transparent
+		display: block
+		+transition(all 0.2s linear)
+		+box
+		&:before
+			position: absolute
+			content: ''
+			bottom: -8px
+			left: 50%
+			margin-left: -7.5px
+			+s(nav-item-arr)
+			display: none
+	&.is-active
+		display: block
+	+r(980)
+		a
+			padding: 0 38px
+	+r(768)
+		a
+			padding: 0 28px
+	+r(668)
+		a
+			padding: 0 20px
+			font-size: 17px
+			height: 60px
+			line-height: 60px
+	+r(570)
+		position: fixed
+		top: 0
+		left: 0
+		bottom: 0
+		padding-top: 90px
+		width: 100%
+		z-index: 20
+		background: #516aae
+		background: rgba(#516aae, 0.8)
+		display: none
+		.nav__item
+			text-align: center
+			display: block
+			&.is-active
+				a
+					&:before
+						display: none
+
+//pagination
+.pagination
+	text-align: center
+	padding: 17px 0 37px
+	.pagination__list
+		font-size: 0
+		display: inline-block
+	li
+		margin: 0 2px
+		font-size: 16px
+		font-weight: 700
+		display: inline-block
+		+r(340)
+			margin: 0
+			font-size: 14px
+	span,
+	a
+		height: 23px
+		width: 22px
+		color: #737373
+		text-align: center
+		display: inline-block
+	a
+		line-height: 23px
+		+border-radius(50%)
+		+r(340)
+			line-height: 21px
+		&:hover,
+		&.is-active
+			color: #fff
+			text-decoration: none
+			background-color: #fcaf0f
+			+transition(all 0.1s linear)
+		&.pagination__prev,
+		&.pagination__next
+			&:hover
+				+opacity(0.8)
+				background-color: #fff
+	span
+		cursor: default
+	.pagination__prev
+		+s(pagination__prev)
+	.pagination__next
+		margin-left: 4px
+		+s(pagination__next)
+
+//filter
+.filter
+	padding-bottom: 10px
+	border-bottom: 1px solid #d7d7d7
+	+box-shadow(0 1px 3px rgba(0,0,0,.1), inset 0 -1px 0 #fff)
+	background: url(../img/filter-bg.png) repeat
+	+clr
+	.filter__text
+		float: left
+		padding-top: 30px
+		font-size: 40px
+	.filter__right
+		float: right
+		margin-top: 55px
+		strong
+			font-weight: 700
+	.filter__text-yellow
+		color: #fab701
+		font-size: 17px
+		font-weight: 700
+		text-transform: uppercase
+	.filter__browse,
+	.filter__text-yellow
+		vertical-align: top
+		display: inline-block
+	.filter__select 
+		margin-left: 28px
+		display: inline-block
+		&:last-child
+			.select__list
+				left: auto
+				right: 0
+	+r(768)
+		text-align: center
+		.filter__text,
+		.filter__right
+			float: none
+		.filter__right
+			margin-top: 6px
+	+r(344)
+		.filter__text-yellow
+			text-align: center
+			display: block
+		.filter__browse
+			text-align: left
+		.filter__select
+			margin-left: 14px
+		
+
+//select
+.select
+	.select__text
+		position: relative
+		padding: 0 14px 5px 0
+		font-size: 17px
+		cursor: pointer
+		&:after
+			position: absolute
+			content: ''
+			top: 50%
+			right: 0
+			margin-top: -3.5px
+			+transition(all 0.2s linear)
+			+s(arr-top)
+		&:hover
+			&:after
+				+rotate(180)
+			.select__list
+				visibility: visible
+				+opacity(1)
+	.select__list
+		position: absolute
+		left: 0
+		top: 100%
+		padding: 1px
+		min-width: 150px
+		text-align: left
+		z-index: 3
+		+box-shadow(0 2px 5px rgba(0,0,0,.1), inset 0 0 7px rgba(255,242,198,.4))
+		+border-radius(3px)
+		visibility: hidden
+		+opacity(0)
+		+transition(all 0.2s linear)
+		background: #ffc42a
+		background: rgba(#ffc42a, 0.8)
+		a
+			padding: 0 15px
+			color: #fff
+			font-size: 17px
+			height: 34px
+			line-height: 34px
+			display: block
+			+box
+			&:hover
+				color: #737373
+				text-decoration: none
+				background: #fff
+				background: rgba(#fff, 0.9)
+//user
+.user
+	margin-top: 26px
+	color: #4c4c4c
+	text-align: center
+	.user__img
+		position: relative
+		height: 148px
+		width: 148px
+		overflow: hidden
+		z-index: 2
+		+border-radius(50%)
+		border: 3px solid #ffac00
+		display: inline-block
+		+box
+	.user__field
+		position: absolute
+		top: -20px
+		left: -426px
+		bottom: -100px
+		width: 1000px
+		text-align: center
+		img
+			display: inline-block
+	.user__name
+		font-size: 18px
+		font-weight: 400
+	.user__text
+		margin-bottom: 10px
+		padding: 0 25px
+		line-height: 1.1
+		font-size: 14px
+		font-style: italic
+	+r(570)
+		margin: 0 0 25px
+
+//like
+.like
+	position: relative
+	.ico
+		position: absolute
+		top: 100%
+		left: 50%
+		margin-left: -5.5px
+		margin-top: 2px
+		cursor: pointer
+		+transition(all 0.1s linear)
+		&:hover
+			+opacity(0.8)
+		&:active
+			margin-top: 1px
+			+opacity(0.6)
+		&.ico_like
+			+s(heart-black)
+	&.is-active
+		.ico_like
+			+s(like)
+
+//article
+.article
+	color: #4c4c4c
+	h1,h2,h3,h4,h5,h6
+		margin: 30px 0 18px
+		font-size: 36px
+		font-weight: 600
+		letter-spacing: -1.2px
+		+r(570)
+			margin: 16px 0 12px
+			font-size: 28px
+		+r(340)
+			font-size: 26px
+	p
+		line-height: 1.5
+	img
+		width: 100%
+		display: block
+	+r(570)
+		.row
+			.btn
+				float: left
+	&.article_in
+		padding: 0 0 20px
+		border-bottom: 1px solid #e4e6e9
+		p
+			text-indent: 20px
+			&:first-child
+				text-indent: 0
+		img
+			margin: 28px 0
+		+r(340)
+			h1,h2,h3,h4,h5,h6
+				margin-top: 0
+
+//tags
+.tags
+	font-size: 0
+	.tags__item
+		margin-left: 10px
+		font-size: 12px
+		color: #4b4b4b
+		display: inline-block
+		text-transform: uppercase
+		&:first-child
+			margin-left: 0
+		a
+			color: #737373
+		+r(340)
+			margin-left: 5px
+			font-size: 11px
+
+//img
+.img
+	position: relative
+	margin: 0 0 28px
+	.date
+		position: absolute
+		top: 0
+		left: 50px
+		padding-top: 8px
+		width: 44px
+		color: #fff
+		font-weight: 600
+		text-align: center
+		line-height: 1
+		cursor: default
+		z-index: 2
+		border: 1px solid #ffc42a
+		border-bottom: none
+		+box-shadow(0 2px 5px rgba(0,0,0,.1), inset 0 6px 13px rgba(255,242,198,.4))
+		background: #ffc016
+		+background-image(linear-gradient(bottom, #ffc016 0%, #f7b500 30.15%, #fbcc4d 69.85%, #ffd35e 100%))
+		+box
+		&:before
+			position: absolute
+			content: ''
+			left: -1px
+			bottom: -20px
+			+arr(44, 20, #ffc016, b)
+	.date__day
+		font-size: 24px
+	.date__month
+		font-size: 14px
+		text-transform: uppercase
+
+//row
+.row
+	margin-top: 27px
+	+clr
+	.tags
+		float: left
+		margin-top: 30px
+	.soc
+		float: right
+		margin-top: 20px
+		+r(570)
+			margin-top: 10px
+	&.row_mod
+		margin: 0 0 15px 0
+		+r(980)
+			.tags, .soc
+				float: none
+			.soc
+				margin-top: 15px
+		+r(340)
+			margin: 0
+			.soc
+				text-align: center
+
+//pager
+.pager
+	padding: 0 0 58px 215px
+	a
+		position: relative
+		max-width: 245px
+		color: #526baf
+		font-size: 13px
+		line-height: 1
+		+transition(all 0.1s linear)
+		+box
+		+ft
+		&:hover
+			text-decoration: none
+			+opacity(0.8)
+		&:before
+			position: absolute
+			content: ''
+			top: 50%
+			margin-top: -11.5px
+		+r(530)
+			font-size: 0
+	+r(768)
+		padding: 0 25px 52px
+	.pager__prev
+		float: left
+		padding-left: 35px
+		&:before
+			left: 0
+			+s(pager-prev)
+	.pager__next
+		float: right
+		padding-right: 35px
+		text-align: right
+		&:before
+			right: 0
+			+s(pager-next)
+
+//ccomments
+.comments
+	margin-bottom: 30px
+	padding: 1px
+	border: 1px solid #d7d7d7
+	+r(1000)
+		.commentForm-box .textareaDef
+			width: 100%
+			+box
+		.commentForm-box form .inputDefBtn
+			float: right
+			margin-top: 20px
+		.commentForm-box
+			padding-right: 29px
+	+r(400)
+		.comment-item .user-img-box
+			margin-left: -60px
+			width: 50px
+			img
+				width: 100%
+				height: auto
+		.comment-item
+			padding-left: 60px
+		.comment-body
+			font-size: 11px
+		.userComment-date
+			font-size: 11px
+
+//footer
+.footer
+	.wrapper
+		padding: 25px 10px 115px
+	.footer__top
+		height: 34px
+		background: url(../img/footer-bg.png) repeat-x 0 0
+	.footer__right
+		float: right
+		width: 17%
+	.footer__logo
+		display: block
+		+s(logo-footer)
+	.copy
+		margin-top: 8px
+		color: #737373
+		font-size: 12px
+		line-height: 1
+		+r(340)
+			font-size: 10px
+	.footer__left
+		float: left
+		width: 83%
+		font-size: 0
+	.footer__item
+		width: 25%
+		font-size: 13px
+		vertical-align: top
+		display: inline-block
+	.footer__title
+		margin-bottom: 14px
+		text-transform: uppercase
+		font-size: 14px
+		line-height: 1
+		font-weight: 400
+	.footer__list
+		font-size: 13px
+		li
+			margin-top: 12px
+			line-height: 1
+			&:first-child
+				margin-top: 0
+		a
+			color: #737373
+	+r(980)
+		.footer__right
+			width: 167px
+		.footer__left
+			width: 77%
+	+r(768)
+		.footer__title
+			font-size: 13px
+		.footer__list
+			font-size: 12px
+		.footer__right,
+		.footer__left
+			width: 100%
+		.footer__right
+			margin-top: 25px
+		.footer__logo
+			float: left
+		.copy
+			float: right
+	+r(570)
+		.wrapper
+			padding-bottom: 50px
+		.footer__left
+			display: none
+		.footer__right
+			margin-top: 0
