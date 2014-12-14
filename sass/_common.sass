@@ -54,6 +54,7 @@
 	font-weight: normal
 
 body
+	position: relative
 	font-family: 'Open Sans', sans-serif
 	font-size: 14px 
 	font-weight: 400
@@ -76,7 +77,38 @@ body
 	+r(570)
 		position: relative
 
-
+.scrolltop
+	right: 50px
+	bottom: 365px
+	padding: 0 10px
+	height: 40px
+	line-height: 40px
+	color: #fff
+	font-weight: 600
+	font-size: 12px
+	text-transform: uppercase
+	z-index: 30
+	visibility: hidden
+	+opacity(0)
+	+border-radius(3px)
+	background: #ffba00
+	background: rgba(#ffba00, 0.4)
+	display: inline-block
+	&:hover
+		text-decoration: none
+		background: #ffba00
+	&.is-active
+		position: fixed
+		visibility: visible
+		+opacity(1)
+	.ico
+		margin-left: 5px
+		margin-top: -5px
+		vertical-align: middle
+	+r(1030)
+		right: 30px
+	+r(480)
+		display: none
 //wrapper   
 .wrapper
 	margin: 0 auto
@@ -93,6 +125,10 @@ body
 		+s(f-top)
 	&.ico_tw-top
 		+s(tw-top)
+	&.ico_vk-top
+		+s(vk-top)
+	&.ico_g-top
+		+s(g-top)
 	&.ico_f
 		+s(f)
 	&.ico_tw
@@ -101,11 +137,13 @@ body
 		+s(vk)
 	&.ico_g
 		+s(g)
+	&.ico_scrolltop
+		+s(up)
 	&:hover
 		+opacity(0.8)
 	&.ico_open-nav
 		+svg(menu, 34, 34)
-		+r(340)
+		+r(390)
 			+svg(menu, 20, 20)
 
 //btn
@@ -186,20 +224,23 @@ body
 		&.is-active
 			position: fixed
 			background: rgba(#ffba00, 1)
-		+r(340)
+		+r(390)
 			height: 45px
 			width: 45px
 			line-height: 45px
-	+r(836)
+	+r(915)
 		.header__text
 			font-size: 16px
-	+r(768)
+	+r(845)
 		.header__text
 			font-size: 14px
-	+r(735)
+	+r(811)
 		.header__text
-			display: none
-	+r(570)
+			font-size: 12px
+	+r(780)
+		.header__text
+			font-size: 0
+	+r(580)
 		.header__right
 			margin-top: 10px
 			width: 100%
@@ -211,6 +252,8 @@ body
 	margin-left: 12px
 	a
 		color: #737373
+	+r(330)
+		font-size: 11px
 
 //logo
 .logo
@@ -311,12 +354,12 @@ body
 			font-size: 17px
 			height: 60px
 			line-height: 60px
-	+r(570)
+	+r(580)
 		position: fixed
 		top: 0
 		left: 0
 		bottom: 0
-		padding-top: 90px
+		padding: 90px 0
 		width: 100%
 		z-index: 20
 		overflow: auto
@@ -663,10 +706,15 @@ body
 			content: ''
 			top: 50%
 			margin-top: -11.5px
-		+r(530)
-			font-size: 0
+		+r(580)
+			width: 49%
+			font-size: 11px
 	+r(768)
 		padding: 0 25px 52px
+	+r(530)
+		padding-bottom: 26px
+		a
+			font-size: 0
 	.pager__prev
 		float: left
 		padding-left: 35px
@@ -686,6 +734,13 @@ body
 	margin-bottom: 30px
 	padding: 1px
 	border: 1px solid #d7d7d7
+	&.people-pager-side
+		background: none
+	.commentForm-box form .inputDefBtn
+		position: relative
+		&:active
+			top: -1px
+			margin-top: 20px
 	+r(1000)
 		.commentForm-box .textareaDef
 			width: 100%
