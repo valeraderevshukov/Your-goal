@@ -9,7 +9,7 @@ head.ready(function() {
 		$('body').toggleClass('is-active');
 	});
 	
-	//add to top button
+	// add to top button
 	$(document).scroll(function() {    
 		var scroll = $(this).scrollTop();
 		if (scroll >= 400) {
@@ -20,13 +20,28 @@ head.ready(function() {
 		}
 	});
 
+	$(function () {
+	    var a = $(".scrolltop"),
+	        c = a.offset(),
+	        d = a.outerHeight(!0),
+	        e = $(".footer").offset();
+	    $(document).scroll(function () {
+	        var b = $(this).scrollTop(),
+	            b = e.top - (b + d + c.top);
+	        0 < b ? a.css({
+	            top: c.top
+	        }) : a.css({
+	            top: c.top + b
+	        })
+	    })
+	});
+	
 	// scrollTop
-	 $(".scrolltop").on('click', function(){
-	  var page = $(this).attr("href");
-	  $('html, body').animate({
-	   scrollTop: $(page).offset().top + 20
-	  }, 600);
-	  return false;
-	 });
-
+	$(".scrolltop").on('click', function(){
+		var page = $(this).attr("href");
+		$('html, body').animate({
+			scrollTop: $(page).offset().top + 20
+		}, 600);
+		return false;
+	});
 });
