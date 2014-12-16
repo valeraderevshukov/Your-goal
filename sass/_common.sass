@@ -94,17 +94,13 @@ body
 	+border-radius(3px)
 	background: #ffba00
 	background: rgba(#ffba00, 0.6)
-	visibility: hidden
-	+opacity(0)
+	display: none
 	&:hover
 		text-decoration: none
 		background: #ffba00
 		font-size: 12px
 		.ico
 			margin-left: 5px
-	&.is-active
-		visibility: visible
-		+opacity(1)
 	.ico
 		margin-top: -4px
 		vertical-align: middle
@@ -112,6 +108,11 @@ body
 		right: 30px
 	+r(480)
 		display: none
+.height
+	position: fixed
+	top: 0
+	bottom: 0 
+
 //wrapper   
 .wrapper
 	margin: 0 auto
